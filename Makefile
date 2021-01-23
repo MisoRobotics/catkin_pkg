@@ -1,6 +1,6 @@
 .PHONY: all setup clean_dist distro clean install testsetup test
 
-NAME=catkin_pkg
+NAME=catkin-pkg
 VERSION=`./setup.py --version`
 
 all:
@@ -21,7 +21,7 @@ clean: clean_dist
 	echo "clean"
 
 install: distro
-	sudo checkinstall python setup.py install
+	eval 'sudo -E checkinstall --default --nodoc --provides="$(NAME)" --pkgsource="$(NAME)" --pkgname="$(NAME)" --pkgversion="$(VERSION)" --maintainer="Ryan Sinnet \<rsinnet@misorobotics.com\>" python setup.py install'
 
 testsetup:
 	echo "running ${NAME} tests"
